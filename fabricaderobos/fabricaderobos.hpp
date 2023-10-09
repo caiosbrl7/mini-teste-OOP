@@ -32,7 +32,7 @@ public:
         {
             cout << "Qual nome deseja dar para seu robo?" << endl;
             cin >> n;
-            cout << "Escolha o tipo de dança:\n1. Rockeiro Maluko\n2. Romantiko\n3. Funkeiro\n";
+            cout << "Escolha o tipo de dança:\n1. Rockeiro Maluko\n2. Romantiko\n3. Balada\n";
             cin >> choice;
             switch (choice)
             {
@@ -45,7 +45,7 @@ public:
                 tipo = "02";
                 break;
             case 3:
-                est = "Funkeiro";
+                est = "Balada";
                 tipo = "03";
                 break;
             default:
@@ -92,18 +92,18 @@ public:
         Robo desativado("Desativado", "Desativado", to_string(0000));
         int serial;
         int opt;
-        cout << "Qual robo deseja desativar?" << endl;
+        
         if (quantidadeatual > 0)
         {
+            cout << "Qual robo deseja desativar?" << endl;
             for (int i = 0; i < quantidadeatual; i++)
             {
-                cout << i + 1 << " - " << linhadeproducao[i].nome_robo() << endl;
+                if (linhadeproducao[i].nome_robo() != "Desativado")
+                {
+                    cout << i + 1 << " - " << linhadeproducao[i].nome_robo() << endl;
+                }
             }
-        }
-        else
-        {
-            cout << "Voce ainda não tem nenhum robo!" << endl;
-        }
+        
 
         cout << "Digite o serial do Robo: ";
         cin >> serial;
@@ -127,15 +127,21 @@ public:
                 }
             }
         }
+        }
+        else
+        {
+            cout << "Voce ainda não tem nenhum robo!" << endl;
+        }
     }
 
     void buscarRobo()
     {
         int serial;
-        cout << "Insira o numero serial do robo para busca-lo: ";
-        cin >> serial;
         if (quantidadeatual > 0)
         {
+            cout << "Insira o numero serial do robo para busca-lo: ";
+            cin >> serial;
+
             for (int i = 0; i < quantidadeatual; i++)
             {
                 if (linhadeproducao[i].serial() == to_string(serial))
@@ -156,9 +162,10 @@ public:
     void fazerRoboDancar()
     {
         int serial;
-        cout << "Qual robo deseja fazer dançar?" << endl;
         if (quantidadeatual > 0)
         {
+            cout << "Qual robo deseja fazer dançar?" << endl;
+
             for (int i = 0; i < quantidadeatual; i++)
             {
                 if (linhadeproducao[i].nome_robo() != "Desativado")
@@ -166,32 +173,37 @@ public:
                     cout << i + 1 << " - " << linhadeproducao[i].nome_robo() << endl;
                 }
             }
+
+            cout << "Digite o numero serial do robo: ";
+            cin >> serial;
+
+            for (int j = 0; j < quantidadeatual; j++)
+            {
+                if (linhadeproducao[j].serial() == to_string(serial))
+                {
+                    if (linhadeproducao[j].estilo_robo() == "Balada")
+                    {
+                        cout << "!!!! Tuts tuts tuts tuts !!!!!" << endl;
+                    }
+                    else if (linhadeproducao[j].estilo_robo() == "Rockeiro Maluko")
+                    {
+                        cout << "ROCK N ROLL!!! *solo de guitarra super interessante*" << endl;
+                    }
+                    else if (linhadeproducao[j].estilo_robo() == "Romantiko")
+                    {
+                        cout << "<3 Never gonna give you up" << endl;
+                        cout << "Never gonna let you down" << endl;
+                        cout << "Never gonna run around and desert you" << endl;
+                        cout << "Never gonna make you cry" << endl;
+                        cout << "Never gonna say goodbye" << endl;
+                        cout << "Never gonna tell a lie and hurt you <3" << endl;
+                    }
+                }
+            }
         }
         else
         {
-            cout << "Voce ainda não tem nenhum robo!" << endl;
-        }
-
-        cout << "Digite o numero serial do robo: ";
-        cin >> serial;
-
-        for (int j = 0; j < quantidadeatual; j++)
-        {
-            if (linhadeproducao[j].serial() == to_string(serial))
-            {
-                if (linhadeproducao[j].estilo_robo() == "Funkeiro")
-                {
-                    cout << "TU TA TA TU TU TA" << endl;
-                }
-                else if (linhadeproducao[j].estilo_robo() == "Rockeiro Maluko")
-                {
-                    cout << "IAAAAAAA" << endl;
-                }
-                else if (linhadeproducao[j].estilo_robo() == "Romantiko")
-                {
-                    cout << "oh babyyyyy" << endl;
-                }
-            }
+            cout << "Como eu vou consultar robos se voce não criou nenhum? Crie seu robo e tente novamente." << endl;
         }
     }
 };
