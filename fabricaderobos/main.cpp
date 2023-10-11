@@ -39,7 +39,6 @@ int main()
             cin.get();
             break;
         case 0:
-            cout << "Até mais! Volte sempre";
             return 0;
         }
         cout << "\n\nAperte ENTER para continuar..." << endl;
